@@ -21,6 +21,7 @@ ivListHist = df.hist_smvVol.to_list()
 callVolumeList = df.current_callVolume.to_list()
 putVolumeList = df.current_putVolume.to_list()
 theTime = datetime.now().strftime("%Y/%m/%d %H:%m")
+print(theTime)
 
 app.layout = html.Div(
 
