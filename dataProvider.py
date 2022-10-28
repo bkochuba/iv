@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 def dteData_app():
 
     #define strike range
-    stock = 'SPX'
-    lows = 3750
-    highs = 3950
+    stock = 'SPY'
+    lows = 377
+    highs = 392
 
     theexp = '2022-10-28'
     theexp1 = '2022-10-28'
