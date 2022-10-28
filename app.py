@@ -51,7 +51,11 @@ app.layout = html.Div(
             },
 
         ),
-
+        dcc.Interval(
+         id='interval-component',
+         interval=1 * 300000,  # in milliseconds
+         n_intervals=0
+        )
 
     ]
 )
