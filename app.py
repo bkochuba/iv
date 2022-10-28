@@ -1,5 +1,6 @@
 from dash import Dash, dcc, html, Output ,Input
 from dataProvider import dteData_app
+from datetime import datetime
 import plotly.express as px
 
 
@@ -19,12 +20,12 @@ ivListCurrent = df.current_smvVol.to_list()
 ivListHist = df.hist_smvVol.to_list()
 callVolumeList = df.current_callVolume.to_list()
 putVolumeList = df.current_putVolume.to_list()
-
+theTime = datetime.now().strftime("%Y/%m/%d %H:%m")
 
 app.layout = html.Div(
 
          children = [
-             html.H2(children = 'SPX 0 DTE Metrics',),
+             html.H2(children = 'SPX 0 DTE Metrics: ' +str(theTime),),
              html.P(
             children="Skew & Volume for 0 DTE",
             ),
