@@ -15,10 +15,6 @@ app.title = "0 DTE Options Data | SpotGamma "
 
 server = app.server
 
-
-
-
-
 app.layout = html.Div(
 
          children = [
@@ -92,30 +88,3 @@ def update_volume_graph(selected_dropdown_value):
 if __name__ == '__main__':
     app.run_server(debug=True)
 
-dcc.Graph(
-    figure={
-        "data": [
-
-            {"x": df['current_strike'], "y": df['current_smvVol'], "type": "lines", "name": "0 DTE IV",
-             "template": "plotly_dark"},
-            {"x": df['current_strike'], "y": df['hist_smvVol'], "type": "lines", "name": "0 DTE IV yesterday",
-             "template": "plotly_dark"},
-
-        ],
-        "layout": {"title": "0DTE IV"},
-    },
-
-),
-dcc.Graph(
-    figure={
-        "data": [
-            {"x": df['current_strike'], "y": df['current_callOpenInterest'], "type": "bar", "name": "0DTE Call Volume",
-             "color": "blue", "template": "plotly_dark"},
-            {"x": df['current_strike'], "y": df['current_putOpenInterest'], "type": "bar", "name": "0DTE Put Volume",
-             "template": "plotly_dark"},
-
-        ],
-        "layout": {"title": "0DTE Volume"},
-    },
-
-),
