@@ -4,16 +4,17 @@ import pandas as pd
 from io import StringIO
 import matplotlib.pyplot as plt
 
-def dteData_app():
-
+def dteData_app(range):
+    range = float(range)
     #define strike range
     stock = 'SPX'
-    lows = 3770
-    highs = 3920
+    upx = 3875
+    lows = upx - (upx*range)
+    highs = upx + (upx*range)
 
-    theexp = '2022-10-28'
-    theexp1 = '2022-10-28'
-    histdate = '202210271600'
+    theexp = '2022-10-31'
+    theexp1 = '2022-10-31'
+    histdate = '202210281600'
 
     #types: hist, comp, single
     charttype = 'hist'
