@@ -18,8 +18,9 @@ server = app.server
 app.layout = html.Div(
 
          children = [
-             html.H2(children = 'SPX 0 DTE Metrics: ' +str(datetime.now().strftime("%Y/%m/%d %H:%m")),),
-
+             html.P(id='live-update-text',
+                      style={'font-size': '10px'}),
+             html.H2(children = 'SPX 0 DTE Metrics ',),
              html.P(
             children="Skew & Volume for 0 DTE",
             ),
@@ -48,6 +49,11 @@ app.layout = html.Div(
 
     ]
 )
+
+@app.callback(Output('live-update-text', 'children'),
+              [Input('interval-component', 'n_intervals')])
+def update_date(n):
+      return [html.P('Last updated ' +str(datetime.now()))]
 
 @app.callback(Output('skewGraph', 'figure'),[Input('my-dropdown','value')])
 def update_skew_graph(selected_dropdown_value):
