@@ -3,17 +3,15 @@ import requests
 import pandas as pd
 from io import StringIO
 import matplotlib.pyplot as plt
+from datetime import datetime
 
 def dteData_app(range):
     range = float(range)
     #define strike range
     stock = 'SPX'
-    upx = 3875
-    lows = upx - (upx*range)
-    highs = upx + (upx*range)
 
-    theexp = '2022-10-31'
-    theexp1 = '2022-10-31'
+    theexp = datetime.now().strftime("%Y-%m-%d")
+    theexp1 = datetime.now().strftime("%Y-%m-%d")
     histdate = '202210281600'
 
     #types: hist, comp, single
@@ -24,6 +22,10 @@ def dteData_app(range):
     headers={}
     response = requests.request("GET", url, headers=headers, data=payload)
     df = pd.read_csv(StringIO(response.text), sep=',')
+    df.to_csv("t1.csv")
+    upx = df.stockPrice.iloc[1]
+    lows = upx - (upx*range)
+    highs = upx + (upx*range)
 
 
     #get past data
@@ -40,15 +42,14 @@ def dteData_app(range):
     df['sym'] = df.ticker.astype(str)+df.expirDate.astype(str)+df.strike.astype(str)
     putVolumeAll = df.putVolume.sum()
     callVolumeAll = df.callVolume.sum()
-    print(putVolumeAll+callVolumeAll)
+
 
     df = df[df.expirDate == theexp]
     callVolumeNext = df.callVolume.sum()
     putVolumeNext = df.putVolume.sum()
     callOINext = df.callOpenInterest.sum()
     putOINext = df.putOpenInterest.sum()
-    print(callOINext+putOINext)
-    print(callVolumeNext+putVolumeNext)
+
     callPct = round(callVolumeNext/callVolumeAll,0)*100
     putPct = round(putVolumeNext/putVolumeAll,0)*100
 

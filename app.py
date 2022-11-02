@@ -43,7 +43,7 @@ app.layout = html.Div(
         dcc.Graph(id='oiGraph'),
         dcc.Interval(
          id='interval-component',
-         interval=1 * 300000,  # in milliseconds
+         interval=1 * 600000,  # in milliseconds
          n_intervals=0
         ),
 
